@@ -1,0 +1,103 @@
+<!-- <html>
+  <head>
+    <meta charset="utf-8" />
+    <title>API</title>
+  </head>
+  </head>
+  <body>
+    <h1>Localhost API</h1>
+    <div class="contianer">
+        <p id="lastname"></p>
+        <p id="city"></p>
+        <p id="email"></p>
+    </div>
+    <script>
+      let bb = document.getElementById('lastname');
+      let cc = document.getElementById('city');
+      let dd = document.getElementById('email');
+
+      async function data () {
+        const response = await fetch('http://localhost:4000/');
+        const jsondata = await response.json();
+        
+        bb.innerHTML = jsondata[0].lastname;
+        cc.innerHTML = jsondata[0].city;
+        dd.innerHTML = jsondata[0].email;
+      
+        
+        // console.log(jsondata);
+      }
+      data().catch(err => console.error(err));
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+
+<body>
+
+    <!-- <div>
+        <table border="1">
+            <tr>
+                <th>first name</th>
+                <th> last name</th>
+                <th>city</th>
+                <th>email</th>
+            </tr>
+            <!-- <tr>
+                <td></td>
+            </tr> -->
+<!-- 
+        </table> -->
+
+    </div> -->
+    <script>
+        console.log('here');
+        getData().catch(err => console.error(err));
+        async function getData() {
+            const response = await fetch('http://localhost:4000/api');
+            const jsondata = await response.json();
+            <!-- console.log(jsondata[0]); -->
+            
+            var table = '';
+            table += '<tr>';
+            table += `<th> firstname</th>`;
+            table += `<th> lastname</th>`;
+
+            table += `<th> city</th>`;
+            table += `<th> email</th>`;
+
+
+            
+            table +='</tr>';
+            jsondata.forEach((value)=>{
+                table +='<tr>';
+                    table += `<td> ${value.firstname} </td>`;
+                    table += `<td> ${value.lastname} </td>`;
+                    table += `<td> ${value.city} </td>`;
+                    table += `<td> ${value.email} </td>`;
+
+
+                table +='</tr>';
+
+
+
+            });
+            document.write(`<table border =1 > ${table} </table>`);
+        }
+
+
+    </script>
+
+
+
+</body>
+</html>
